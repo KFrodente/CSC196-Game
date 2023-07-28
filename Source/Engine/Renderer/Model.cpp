@@ -1,5 +1,6 @@
 #include "Model.h"
 #include <sstream>
+#include "Core/MathUtils.h"
 
 namespace yogi 
 {
@@ -9,6 +10,8 @@ namespace yogi
 		yogi::readFile(filename, buffer);
 
 		std::istringstream stream(buffer);
+
+		stream >> m_color;
 
 		std::string line;
 		std::getline(stream, line);
@@ -31,6 +34,8 @@ namespace yogi
 	{
 		if (m_points.empty()) return;
 
+		renderer.SetColor(Color::ToInt(m_color.r), Color::ToInt(m_color.g), Color::ToInt(m_color.b), Color::ToInt(m_color.a));
+
 		if (connect) {
 			vec2 firstPoint = m_points[0];
 			m_points.push_back(firstPoint);
@@ -49,5 +54,17 @@ namespace yogi
 
 		Draw(renderer, transform.position, transform.rotation, transform.scale, false);
 
+	}
+	float Model::GetRadius()
+	{
+		if (m_radius != 0) return m_radius;
+
+		for (auto point : m_points)
+		{
+			float length = point.Length();
+			m_radius = Max(m_radius, length);
+		}
+
+		return m_radius;
 	}
 }

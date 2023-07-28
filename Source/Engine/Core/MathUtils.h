@@ -30,7 +30,11 @@ namespace yogi
 	template <typename T>
 	inline T Clamp(T value, T min, T max)
 	{
-		if (min > max) std::swap(min, max);
+		if (min > max) {
+			T placeHold = max;
+			max = min;
+			min = placeHold;
+		}
 
 		return (value < min) ? min : (value > max) ? max : value;
 	}
