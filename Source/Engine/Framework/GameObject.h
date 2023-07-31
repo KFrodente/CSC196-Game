@@ -41,7 +41,7 @@ namespace yogi
 
 	protected:
 		bool m_destroyed = false;
-		float m_health = 1;
+		int m_health = 1;
 
 		std::shared_ptr<Model> m_model;
 

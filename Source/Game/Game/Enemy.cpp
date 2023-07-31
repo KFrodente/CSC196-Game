@@ -16,7 +16,7 @@ void Enemy::Update(float dt)
 	{
 		m_moveTimer = g_moveEnemyTimer;
 		m_xPos--;
-		m_transform.position.x = g_gridXSpots[m_xPos];
+		m_transform.position.x = (float)g_gridXSpots[m_xPos];
 	}
 	//yogi::vec2 forward = yogi::vec2{ 0, -1 }.Rotate(m_transform.rotation);
 
@@ -57,7 +57,7 @@ void Enemy::OnCollision(GameObject* other)
 	if (other->m_tag == "PlayerBullet" /*&& other->m_timeTillDamage < 0*/)
 	{
 		this->m_health -= other->m_damage;
-		m_game->AddPoints(100 * m_speed);
+		m_game->AddPoints(100 * (int)m_speed);
 		yogi::g_audioSystem.PlayOneShot("enemyDied", false);
 		//do particles
 		yogi::EmitterData data;

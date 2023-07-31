@@ -50,8 +50,8 @@ void Player::Update(float dt)
 	if (yogi::g_inputSystem.GetKeyDown(SDL_SCANCODE_T)) yogi::g_time.SetTimeScale(0.5f);
 	else yogi::g_time.SetTimeScale(1);  
 
-	m_transform.position.y = g_gridYSpots[m_yPos];
-	m_transform.position.x = g_gridXSpots[m_xPos];
+	m_transform.position.y = (float)g_gridYSpots[m_yPos];
+	m_transform.position.x = (float)g_gridXSpots[m_xPos];
 
 	m_game->SetHealth(m_health);
 

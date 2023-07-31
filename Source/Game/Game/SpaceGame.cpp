@@ -18,7 +18,6 @@ float g_moveEnemyTimer = 50.0f;
 
 bool SpaceGame::Init()
 {
-
 	//text
 	m_font = std::make_shared<yogi::Font>("BodoniFLF-Bold.ttf", 24);
 
